@@ -15,10 +15,10 @@ class FeishuAuthProvider extends ServiceProvider
     public function boot()
     {
         $this->publishes([
-            __DIR__.'/../Config/feishu.php' => config_path('feishu.php'),
+            __DIR__ . '/../Config/feishu.php' => config_path('feishu.php'),
         ]);
 
-        $this->loadRoutesFrom(__DIR__.'/../Route/api.php');
+        $this->loadRoutesFrom(__DIR__ . '/../Route/api.php');
     }
 
     /**
