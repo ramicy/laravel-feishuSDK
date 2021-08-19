@@ -1,0 +1,26 @@
+{
+    "name": "ramic/feishu-auth",
+    "description": "a feishu auth sdk",
+    "autoload": {
+        "psr-4": {
+            "FeishuSDK\\": "src/"
+        }
+    },
+    "authors": [
+        {
+            "name": "ramic",
+            "email": "ramic@gtdstuio.com"
+        }
+    ],
+    "extra": {
+        "laravel": {
+            "providers": [
+                "FeishuSDK\\Provider\\FeishuAuthProvider"
+            ],
+            "aliases": {
+                "FeishuAuth": "FeishuSDK\\Facades\\FeishuAuth"
+            }
+        }
+    },
+    "require": {}
+}
