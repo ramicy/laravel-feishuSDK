@@ -2,6 +2,7 @@
 
 namespace FeishuSDK\Provider;
 
+use FeishuSDK\FeishuAuth;
 use Illuminate\Support\ServiceProvider;
 
 class FeishuAuthProvider extends ServiceProvider
@@ -27,5 +28,8 @@ class FeishuAuthProvider extends ServiceProvider
      */
     public function register()
     {
+        $this->app->singleton('FeishuAuth', function () {
+            return new FeishuAuth();
+        });
     }
 }
