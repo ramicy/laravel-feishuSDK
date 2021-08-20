@@ -2,7 +2,6 @@
 
 namespace FeishuSDK\Provider;
 
-use FeishuSDK\FeishuAuth;
 use Illuminate\Support\ServiceProvider;
 
 class FeishuAuthProvider extends ServiceProvider
@@ -15,7 +14,7 @@ class FeishuAuthProvider extends ServiceProvider
     public function boot()
     {
         $this->publishes([
-            __DIR__ . '/../Config/feishu.php' => config_path('feishu.php'),
+            realpath(__DIR__ . '/../Config/feishu.php') => config_path('feishu.php'),
         ]);
 
         $this->loadRoutesFrom(__DIR__ . '/../Route/api.php');
@@ -28,10 +27,5 @@ class FeishuAuthProvider extends ServiceProvider
      */
     public function register()
     {
-        $this->app->singleton('feishu-auth', function () {
-            return new FeishuAuth();
-        });
-
-        $this->mergeConfigFrom(__DIR__ . '/../Config/feishu.php', 'feishu');
     }
 }
