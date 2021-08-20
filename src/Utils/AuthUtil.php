@@ -10,6 +10,6 @@ class AuthUtil
             'redirect_uri' => rtrim(config('feishu.redict_url'), '/') . '/api/feishu/code2session'
         ]);
 
-        return redirect('https://open.feishu.cn/open-apis/authen/v1/index?'.urlencode($query));
+        return redirect('https://open.feishu.cn/open-apis/authen/v1/index?'.$query);
     }
 }
