@@ -31,5 +31,7 @@ class FeishuAuthProvider extends ServiceProvider
         $this->app->singleton('feishu-auth', function () {
             return new FeishuAuth();
         });
+
+        $this->mergeConfigFrom(__DIR__ . '/../Config/feishu.php', 'feishu');
     }
 }
