@@ -13,6 +13,11 @@ class UserAccessToken
 
     public static function checkToken($openId, $token) {
         $data = Redis::get(self::PREFIX . $openId);
+
+        if ($data) {
+            $data = json_decode($data, true);
+        }
+
         if (!$data || Arr::get($data, 'access_token') != $token) {
             throw new \Exception('登录失效');
         }
@@ -63,12 +68,10 @@ class UserAccessToken
     }
 
     public static function setToken(array $data) {
-        $token = Arr::get($data, 'access_token');
-
         Arr::set($data, 'expire_time', time() + Arr::get($data, 'expires_in'));
         Arr::set($data, 'refresh_expire_time', time() + Arr::get($data, 'refresh_expires_in'));
 
-        Redis::set(self::PREFIX . Arr::get($data, 'open_id'), $data);
-        return $token;
+        Redis::set(self::PREFIX . Arr::get($data, 'open_id'), json_encode($data));
+        return $data;
     }
 }

@@ -2,6 +2,7 @@
 
 namespace FeishuSDK\Controller;
 
+use Illuminate\Support\Arr;
 use Exception;
 use FeishuSDK\Access\UserAccessToken;
 use Illuminate\Http\Request;
@@ -20,6 +21,8 @@ class AuthController
             throw new Exception('登录失败,请稍后重试');
         }
 
-        return UserAccessToken::setToken($token);
+        $data = UserAccessToken::setToken($token);
+
+        return Arr::only($data, ['access_token', 'open_id']);
     }
 }
